@@ -1,0 +1,589 @@
+/* Universal Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+/* Body Styling */
+body {
+    color: #1a1a1a;
+    background-color: #f4f3ee;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* Keyframes for Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Header Styling */
+header {
+    background-color: #faf4f6;
+    padding: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: padding 0.3s ease;
+    animation: fadeIn 1s ease-out;
+}
+
+/* Navigation Styling */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    max-width: 1300px;
+    margin: 0 auto;
+    position: relative; /* Necessary for the underline */
+}
+
+/* Logo Styling */
+.logo {
+    margin-left: -20px; /* Move the logo slightly to the left */
+}
+
+.logo img {
+    max-height: 60px;
+    display: block;
+    border-radius: 50%;
+    border: 3px solid #1a1a1a;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 10px;
+    position: relative;
+    scrollbar-width: none;
+}
+
+.nav-links::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-links a {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding-bottom: 5px;
+    position: relative;
+    white-space: nowrap;
+    transition: color 0.3s ease, transform 0.3s ease;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.nav-links a:hover {
+    color: #ff6f61;
+    transform: translateY(-2px); /* Subtle lift effect */
+}
+
+.nav-links a.active {
+    color: #ff6f61;
+}
+
+/* Sliding Underline Effect */
+.nav-links::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: #ff6f61;
+    transition: left 0.3s ease, width 0.3s ease;
+}
+
+.nav-links a.active::before {
+    width: 100%;
+}
+
+/* Hero Section Styling */
+.hero {
+    background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('your-hero-image.jpg') center/cover no-repeat;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+    scroll-snap-align: start; /* Snap effect for hero section */
+    animation: fadeIn 2s ease-out;
+}
+
+.hero-content h1 {
+    font-size: 72px;
+    margin-bottom: 30px;
+    line-height: 1.2;
+    color: #1a1a1a;
+    font-family: 'EB Garamond', serif;
+    transition: transform 0.3s ease; /* Smooth hover effect */
+    animation: slideIn 2s ease-out;
+}
+
+.hero-content p {
+    font-size: 22px;
+    margin-bottom: 50px;
+    color: #4a4a4a;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeIn 2.5s ease-out;
+}
+
+/* Button Styling */
+.cta-button {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 15px 50px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    font-family: 'Inter', sans-serif;
+    animation: float 3s ease-in-out infinite; /* Floating effect */
+}
+
+.cta-button:hover {
+    background-color: #ff6f61;
+    transform: scale(1.05);
+}
+
+/* About Section Styling */
+.about {
+    padding: 100px 20px;
+    background-color: #eae7dc;
+    text-align: center;
+    scroll-snap-align: start; /* Snap effect for sections */
+    animation: fadeIn 1s ease-out;
+}
+
+.about .container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about h2 {
+    font-size: 48px;
+    color: #1a1a1a;
+    margin-bottom: 40px;
+    font-family: 'EB Garamond', serif;
+    transition: color 0.3s ease, transform 0.3s ease;
+    animation: slideIn 1.5s ease-out;
+}
+
+.about p {
+    font-size: 18px;
+    color: #4a4a4a;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeIn 2s ease-out;
+}
+
+/* Projects Section Styling */
+.projects {
+    padding: 60px 20px;
+    background-color: #f5eaed;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.project-group {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #9394a5 transparent;
+    scroll-behavior: smooth;
+    padding: 10px 0;
+    margin: 0 10px;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.project-group::-webkit-scrollbar {
+    height: 8px;
+    background-color: transparent;
+}
+
+.project-group::-webkit-scrollbar-thumb {
+    background-color: #ff6f61;
+    border-radius: 10px;
+}
+
+.project-card {
+    flex: 0 0 auto;
+    width: 380px;
+    scroll-snap-align: start;
+    background-color: #ffffff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    animation: scaleUp 1.8s ease-out;
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+}
+
+.project-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 24px 24px 0 0;
+    transition: transform 0.3s;
+}
+
+.project-card:hover img {
+    transform: scale(1.02);
+}
+
+.project-card h3 {
+    margin: 20px;
+    font-size: 1.6em;
+    color: #333;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-family: 'Inter', sans-serif;
+    animation: fadeIn 2s ease-out;
+}
+
+.project-card p {
+    margin: 20px;
+    font-size: 16px;
+    color: #777;
+    line-height: 1.6;
+    font-family: 'Inter', sans-serif;
+    animation: fadeIn 2.5s ease-out;
+}
+/* Skills Section Styling */
+.skills {
+    padding: 100px 20px;
+    background-color: #ece5dd;
+    text-align: center;
+    scroll-snap-align: start; /* Snap effect for sections */
+    animation: fadeIn 1s ease-out;
+}
+
+.skills .container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.skills h2 {
+    font-size: 48px;
+    color: #1a1a1a;
+    margin-bottom: 40px;
+    font-family: 'EB Garamond', serif; /* Updated to match the heading font style */
+    animation: slideIn 1.5s ease-out;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.skill-item {
+    background-color: #e4e5f1;
+    color: #1a1a1a;
+    font-size: 18px;
+    padding: 20px 30px; /* Adjusted padding to fit icons */
+    border-radius: 50px;
+    font-family: 'Inter', sans-serif; /* Updated to match main content font */
+    transition: transform 0.3s ease;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    animation: float 3s ease-in-out infinite; /* Floating effect */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.skill-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.skill-item i {
+    font-size: 24px; /* Icon size */
+    color: #ff6f61; /* Icon color */
+    transition: transform 0.3s ease;
+}
+
+.skill-item:hover i {
+    transform: scale(1.2);
+}
+
+
+/* Contact Section Styling */
+.contact {
+    padding: 80px 20px;
+    background-color: #f7f5f6;
+    text-align: center;
+    scroll-snap-align: start;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.contact h2 {
+    font-size: 40px;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+    font-family: 'EB Garamond', serif;
+    animation: slideIn 1.5s ease-out;
+}
+
+.contact p {
+    font-size: 18px;
+    color: #4a4a4a;
+    margin-bottom: 40px;
+    animation: fadeIn 2s ease-out;
+}
+
+.contact form {
+    max-width: 600px;
+    margin: 0 auto;
+    animation: fadeIn 2.5s ease-out;
+}
+
+.contact input, .contact textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f1f1f1;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.contact input:focus, .contact textarea:focus {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+.contact button {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 15px 50px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    font-family: 'Inter', sans-serif;
+}
+
+.contact button:hover {
+    background-color: #ff6f61;
+    transform: scale(1.05);
+}
+/* Contact Info Styling */
+.contact-info {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.contact-info p {
+    margin: 10px 0;
+}
+
+.contact-info a {
+    color: #333;
+    text-decoration: none;
+    position: relative;
+    padding-left: 30px; /* Space for the icon */
+    transition: color 0.3s ease;
+}
+
+/* Email and Phone Number Icons */
+.contact-info a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    transition: transform 0.3s ease;
+}
+
+.contact-info a[href^="mailto"]::before {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/732/732200.png'); /* Email icon */
+}
+
+.contact-info a[href^="tel"]::before {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/597/597177.png'); /* Phone icon */
+}
+
+/* Footer Styling */
+footer {
+    padding: 20px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #ff6f61;
+}
+
+footer p {
+    margin-top: 10px;
+    font-size: 14px;
+}
+/* Back to Top Button */
+#backToTop {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 100;
+    display: none;
+    width: 50px;
+    height: 50px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s ease-in-out;
+}
+
+#backToTop::before {
+    content: "\f077"; /* FontAwesome icon code for an upward arrow */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 20px;
+    display: block;
+    line-height: 50px;
+    text-align: center;
+}
+
+/* Hover and Active States */
+#backToTop:hover {
+    background-color: #0056b3;
+    transform: translateY(-5px);
+}
+
+#backToTop:active {
+    transform: translateY(2px);
+}
+
+/* For devices with a screen width less than 768px */
+@media (max-width: 767px) {
+    #backToTop {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
+
+    #backToTop::before {
+        font-size: 18px;
+        line-height: 45px;
+    }
+}
+
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .nav {
+        padding: 0 20px;
+    }
+    
+    .nav-links {
+        gap: 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 48px;
+    }
+
+    .hero-content p {
+        font-size: 20px;
+    }
+
+    .about h2 {
+        font-size: 36px;
+    }
+}
